@@ -1,0 +1,19 @@
+{
+  "name": "devpilot",
+  "private": true,
+  "version": "1.0.0",
+  "description": "AI-powered deployment and infrastructure copilot for Zerops",
+  "scripts": {
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "dev": "npm-run-all --parallel dev:server dev:client",
+    "build:server": "npm --prefix server run build",
+    "build:client": "npm --prefix client run build",
+    "build": "npm run build:server && npm run build:client",
+    "typecheck": "npm --prefix server run typecheck && cd client && npx tsc --noEmit -p tsconfig.app.json",
+    "install:all": "npm install --prefix server && npm install --prefix client"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

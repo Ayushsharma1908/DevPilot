@@ -1,0 +1,22 @@
+zerops:
+  - setup: api
+    build:
+      base: nodejs@22
+      buildCommands:
+        - npm install
+        - npm run build
+      deployFiles:
+        - dist
+        - package.json
+        - package-lock.json
+        - node_modules
+    run:
+      base: nodejs@22
+      ports:
+        - port: 8787
+          httpSupport: true
+      start: npm run start
+      healthCheck:
+        httpGet:
+          port: 8787
+          path: /api/health

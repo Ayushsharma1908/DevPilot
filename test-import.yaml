@@ -1,0 +1,7 @@
+project:
+  name: devpilot-test
+services:
+  - hostname: backend
+    type: nodejs@22
+    minContainers: 1
+    maxContainers: 1
