@@ -9,9 +9,9 @@ zerops:
         - dist
         - package.json
         - package-lock.json
+
     run:
       base: alpine/nodejs@22
       ports:
         - port: 8787
-          httpSupport: true
-      start: npm start
+      start: npm install --omit=dev && npm start
