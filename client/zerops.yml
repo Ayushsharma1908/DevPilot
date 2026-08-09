@@ -6,6 +6,12 @@ zerops:
         - npm install
         - npm run build
       deployFiles:
-        - dist/~
+        - dist
+        - package.json
+        - package-lock.json
     run:
       base: alpine/nodejs@22
+      ports:
+        - port: 4173
+          httpSupport: true
+      start: npm run preview -- --host 0.0.0.0 --port 4173
