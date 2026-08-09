@@ -1,11 +1,11 @@
 zerops:
   - setup: frontend
     build:
-      base: static
+      base: alpine/nodejs@22
       buildCommands:
         - npm install
         - npm run build
       deployFiles:
         - dist/~
     run:
-      base: static
+      base: alpine/nodejs@22
