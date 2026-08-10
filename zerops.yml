@@ -1,0 +1,19 @@
+﻿zerops:
+  - setup: api
+    build:
+      base: alpine/nodejs@22
+      buildCommands:
+        - cd server && npm install
+        - cd server && npm run build
+      deployFiles:
+        - server/dist/~
+        - server/package.json
+        - server/package-lock.json
+    run:
+      base: alpine/nodejs@22
+      ports:
+        - port: 8787
+          httpSupport: true
+      envVariables:
+        NODE_ENV: production
+      start: npm install --omit=dev && node dist/index.js
