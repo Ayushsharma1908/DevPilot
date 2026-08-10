@@ -5,8 +5,10 @@ zerops:
       buildCommands:
         - npm install
         - npm run build
+        - npm prune --omit=dev
       deployFiles:
         - dist
+        - node_modules
         - package.json
         - package-lock.json
     run:
