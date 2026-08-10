@@ -9,9 +9,11 @@ zerops:
         - dist
         - package.json
         - package-lock.json
+      envVariables:
+        VITE_API_URL: https://api-2d07-8787.prg1.zerops.app
     run:
       base: alpine/nodejs@22
       ports:
         - port: 4173
           httpSupport: true
-      start: npm run preview -- --host 0.0.0.0 --port 4173
+      start: npx -y serve dist -l 4173 -s

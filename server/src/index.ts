@@ -19,11 +19,20 @@ console.log(`PORT=${PORT} (from env: ${process.env.PORT ?? "not set, using defau
 console.log(`DEMO_MODE=${process.env.DEMO_MODE ?? "not set (defaults to true)"}`);
 console.log(`GEMINI_API_KEY=${process.env.GEMINI_API_KEY ? "configured" : "not set"}`);
 
-const allowedOrigin = process.env.FRONTEND_URL;
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:4173",
+  "https://dev-pilot-blond.vercel.app", // production frontend
+];
+if (process.env.FRONTEND_URL && !allowedOrigins.includes(process.env.FRONTEND_URL)) {
+  allowedOrigins.push(process.env.FRONTEND_URL);
+}
+console.log(`FRONTEND_URL=${process.env.FRONTEND_URL ?? "not set"}`);
+console.log(`CORS allowed origins: ${allowedOrigins.join(", ")}`);
 
 app.use(
   cors({
-    origin: allowedOrigin,
+    origin: allowedOrigins,
     credentials: true,
   })
 );
