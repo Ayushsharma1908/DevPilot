@@ -19,7 +19,14 @@ console.log(`PORT=${PORT} (from env: ${process.env.PORT ?? "not set, using defau
 console.log(`DEMO_MODE=${process.env.DEMO_MODE ?? "not set (defaults to true)"}`);
 console.log(`GEMINI_API_KEY=${process.env.GEMINI_API_KEY ? "configured" : "not set"}`);
 
-app.use(cors());
+const allowedOrigin = process.env.FRONTEND_URL;
+
+app.use(
+  cors({
+    origin: allowedOrigin,
+    credentials: true,
+  })
+);
 app.use(express.json({ limit: "1mb" }));
 
 app.use("/api/architecture", architectureRoutes);
